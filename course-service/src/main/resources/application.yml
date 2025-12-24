@@ -1,0 +1,48 @@
+server:
+  port: 8002
+  servlet:
+    context-path: /api/courses
+
+spring:
+  application:
+    name: course-service
+  datasource:
+    url: jdbc:mysql://${DB_HOST:mysql}:${DB_PORT:3306}/${DB_NAME:skilltrack_courses}
+    username: ${DB_USER:skilltrack_user}
+    password: ${DB_PASSWORD:SkillTrackUserPw_2025_AtLeast16Chars}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+
+jwt:
+  # Must match the secret used by auth-service (and any gateway) to validate tokens.
+  secret: ${JWT_SECRET:6u+1mWq2P4Kl2/DtzTgCymTttstCqt9YcBAmXBtWX3I=}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
+
+logging:
+  level:
+    root: INFO
+    com.skilltrack: DEBUG

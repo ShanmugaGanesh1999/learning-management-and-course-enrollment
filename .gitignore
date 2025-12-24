@@ -1,0 +1,20 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Java / Maven / Gradle
+**/target/
+**/.mvn/
+**/.gradle/
+**/build/
+
+# Node / Angular
+**/node_modules/
+**/dist/
+
+# Git / OS / IDE
+.git/
+.DS_Store
+.vscode/
+.idea/

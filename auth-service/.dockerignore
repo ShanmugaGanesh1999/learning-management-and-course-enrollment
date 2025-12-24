@@ -1,0 +1,20 @@
+.git
+.gitignore
+
+# Node/Frontend artifacts
+node_modules
+dist
+
+# Java build artifacts
+target
+build
+.gradle
+
+# IDE
+.vscode
+.idea
+*.iml
+
+# Env
+.env
+.env.local

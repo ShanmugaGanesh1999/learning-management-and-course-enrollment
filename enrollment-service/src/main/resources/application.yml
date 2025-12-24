@@ -1,0 +1,52 @@
+server:
+  port: 8003
+  servlet:
+    context-path: /api/enrollments
+
+spring:
+  application:
+    name: enrollment-service
+  datasource:
+    url: jdbc:mysql://${DB_HOST:mysql}:${DB_PORT:3306}/${DB_NAME:skilltrack_enrollments}
+    username: ${DB_USER:skilltrack_user}
+    password: ${DB_PASSWORD:SkillTrackUserPw_2025_AtLeast16Chars}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+jwt:
+  # Must match the secret used by auth-service (and any gateway) to validate tokens.
+  secret: ${JWT_SECRET:6u+1mWq2P4Kl2/DtzTgCymTttstCqt9YcBAmXBtWX3I=}
+
+services:
+  course:
+    # Base URL should include course-service context-path (/api/courses)
+    base-url: ${COURSE_SERVICE_BASE_URL:http://course-service:8002/api/courses}
+  auth:
+    # Optional; used for future enrichment/verification.
+    base-url: ${AUTH_SERVICE_BASE_URL:http://auth-service:8001/api/auth}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
+
+logging:
+  level:
+    root: INFO
+    com.skilltrack: DEBUG
